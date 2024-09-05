@@ -62,3 +62,5 @@ x
 
 # The histogram of x displays a relatively uniform bell-shaped curve
 hist(x)
+
+
