@@ -63,6 +63,44 @@ badger_hist
 # ... that there are more intermediate frequencies below degrees of 10 than
 # ... above.
 
+## Question 4 -----------------------------------------------------------------
+library(epinet)
+
+summarize_SIR <- function(edgelist, beta) {
+    result <- SEIR.simulator(
+        M = edgelist,
+        N = attributes(edgelist)$n,
+        beta,
+        ki = 1,
+        thetai = 2,
+        latencydist = "fixed",
+        latencyperiod = 0
+    )
+    ID_list <- degrees_badgers(edgelist)
+    data.frame(
+        "NodeID" = c(as.numeric(result[1, "Node ID"])),
+        "Degree" = c(
+            ID_list[ID_list$Node.ID == as.numeric(result[1, "Node ID"]),]$Degree
+        ),
+        "Proportion" = c(
+            as.numeric(1 + length(
+                na.omit(result[,"Parent"])
+            )) / length(result[,"Parent"])
+        )
+    )
+}
+
+
+sim_SIR_network <- function(edgelist, beta, num_simulations) {
+  result <- data.frame()
+  for (i in 1:num_simulations) {
+    output <- summarize_SIR(edgelist, beta)
+    result <- rbind(result, output)
+  }
+  return(result)
+}
+
+sim_SIR_network(as.edgelist(badger_net), beta = 0.5, num_simulations = 10000)
 
 
 
