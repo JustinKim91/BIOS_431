@@ -59,6 +59,9 @@ badger_hist <- ggplot(degree, aes(x = Degree)) +
 
 badger_hist
 
+# The distribution is relatively normal, but maybe slightly right-skewed given
+# ... that there are more intermediate frequencies below degrees of 10 than
+# ... above.
 
 
 
