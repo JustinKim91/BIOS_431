@@ -100,7 +100,36 @@ sim_SIR_network <- function(edgelist, beta, num_simulations) {
   return(result)
 }
 
-sim_SIR_network(as.edgelist(badger_net), beta = 0.5, num_simulations = 10000)
+sim_SIR_network(as.edgelist(badger_net), beta = 0.2, num_simulations = 10000)
 
+# Create data frame of network simulation to make visualizing data easier
+sim_df <- as.data.frame(sim_SIR_network(as.edgelist(badger_net), beta = 0.5,
+                                        num_simulations = 10000))
+sim_df
+sim_df$Degree <- as.factor(sim_df$Degree)
+
+sim_plot <- ggplot(sim_df, aes(x = Degree, y = Proportion)) +
+  geom_boxplot()
+
+sim_plot
+
+# The box plot of the SIR model in the badger social network supports my
+# ... prediction in question 2 pretty strongly.As the degree increases, the
+# ... median value of the infected proportion of badgers increases. Furthermore,
+# ... as the degree increases, the data becomes more concentrated in higher
+# ... proportions, indicating that with higher degree, the population is more
+# ... likely to experience high proportions of infection.
+
+## Question 5 -----------------------------------------------------------------
+
+# One way to make the model more realistic is to implement weighted edges. To
+# ... do this, we must assume that not every connection between nodes is equal;
+# ... perhaps badgers that are reproductive partners share greater connections
+# ... as nodes than they would with neighboring individuals. To implement this
+# ... in our model, we could set the badger_matrix to "weighted + TRUE" and
+# ... mutate the badger edgelist to include weighting for each nodal connection.
+# ... Then, we can run the simulation while setting beta = (number)*Weight.
+# ... Example: sim_SIR_network(as.edgelist(badger_net), 
+# ... beta = 0.5*edgelist$Weight, num_simulations = 10000)
 
 
