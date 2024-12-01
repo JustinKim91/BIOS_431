@@ -24,19 +24,21 @@ SIR = function (t, state, parameters){
 
 params1 = c(
   b = 0.5,        # Increased birth rate
-  d = 0.01,       # Low death rate
+  d = 0.02,       # Low death rate
   K = 10000,      # Carrying capacity set to initial population
   c = 0.0001,     # Very small carrying capacity effect
-  B = 0.0001,     # Much lower transmission rate
+  B = 0.1,     # Much lower transmission rate
   w = 0.01,       # Low rate of losing immunity
   v = 0.05,       # Recovery rate
-  k = 0.001,      # Very low additional removal rate
-  r = 0.05,       # Moderate recovery/vaccination rate
+  k = 0,      # No additional removal rate
+  r = 0.5,       # Moderate recovery/vaccination rate
   f = 0           # Fragmentation starts at 0
 )
 
 
 initials = c(S = 8000, I = 2000, R = 0)
+
+frag_vec <- seq(0,1,0.01)
 
 # Storage for results
 results <- data.frame(
@@ -103,14 +105,14 @@ pretty_plot
 initials = c(S = 8000, I = 2000, R = 0)
 
 params1 = c(
-  b = 0.2,        # Increased birth rate
-  d = 0.01,       # Low death rate
+  b = 0.5,        # Increased birth rate
+  d = 0.02,       # Low death rate
   K = 10000,      # Carrying capacity set to initial population
   c = 0.0001,     # Very small carrying capacity effect
-  B = 0.0001,     # Much lower transmission rate
+  B = 0.1,     # Much lower transmission rate
   w = 0.01,       # Low rate of losing immunity
   v = 0.05,       # Recovery rate
-  k = 0.001,      # Very low additional removal rate
+  k = 0,      # No additional removal rate
   r = 0.5,       # Moderate recovery/vaccination rate
   f = 0           # Fragmentation starts at 0
 )
@@ -132,14 +134,14 @@ test1_plot
 
 
 params2 = c(
-  b = 0.2,        # Increased birth rate
+  b = 0.5,        # Increased birth rate
   d = 0.01,       # Low death rate
   K = 10000,      # Carrying capacity set to initial population
   c = 0.0001,     # Very small carrying capacity effect
-  B = 0.0001,     # Much lower transmission rate
+  B = 0.1,     # Much lower transmission rate
   w = 0.01,       # Low rate of losing immunity
   v = 0.05,       # Recovery rate
-  k = 0.001,      # Very low additional removal rate
+  k = 0,      # Very low additional removal rate
   r = 0.5,       # Moderate recovery/vaccination rate
   f = 1           # Fragmentation starts at 0
 )
