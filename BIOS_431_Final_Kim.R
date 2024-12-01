@@ -1,6 +1,6 @@
 
 
-
+# install.packages("ggthemes")
 
 library(deSolve)
 library(ggplot2)
@@ -77,7 +77,8 @@ amph_plot <- ggplot(results, aes(x = frag_vec)) +
   geom_line(aes(y = Recovered), color = "purple") +
   ggtitle("SIR Population vs Fragmentation") +
   xlab("Degree of Fragmentation") +
-  ylab("Individuals")
+  ylab("Individuals") +
+  theme_wsj()
 
 amph_plot  
   
