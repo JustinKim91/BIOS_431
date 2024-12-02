@@ -19,7 +19,6 @@ SIR = function (t, state, parameters){
       list(res)
     }
   )
-}
 
 
 params1 = c(
